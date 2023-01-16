@@ -61,13 +61,13 @@ void sendToController(BreachType breachType) {
 
 static void MailBreachType(BreachType breachType)
 {
-  BreachType BreachType_enum;
+  //BreachType BreachType_enum;
   
-  if (breachType == BreachType_enum)
+  if (breachType == TOO_LOW)
   {
       printf("The temperature is low\n");
   }
-  else if (breachType == BreachType_enum)
+  else if (breachType == TOO_HIGH)
   {
       printf("The temperature is High\n");
   }
