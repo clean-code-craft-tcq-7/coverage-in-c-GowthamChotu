@@ -52,6 +52,7 @@ void Email(BreachType breachType) {
       printf("Hi, the temperature is too high\n");
       break;
     case NORMAL:
+      printf("Hi, the temperature is Normal\n");
       break;
   }
 }
