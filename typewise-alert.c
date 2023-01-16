@@ -44,16 +44,18 @@ void sendToEmail(BreachType breachType) {
 }
 
 void Email(BreachType breachType) {
-  switch(breachType) {
-    case TOO_LOW:
-      printf("Hi, the temperature is too low\n");
-      break;
-    case TOO_HIGH:
-      printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      printf("Hi, the temperature is Normal\n");
-      break;
+  
+  if(breachType == TOO_LOW)
+  {
+    printf("Hi, the temperature is too low\n");
+  }
+  else if(breachType == TOO_HIGH)
+  {
+    printf("Hi, the temperature is too high\n");
+  }
+  else
+  {
+    printf("Hi, the temperature is Normal\n");
   }
 }
 
