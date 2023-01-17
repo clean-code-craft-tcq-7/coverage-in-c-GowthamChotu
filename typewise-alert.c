@@ -1,8 +1,8 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
-static coolingLimitType TypesOfLimitCooling(CoolingType coolingType);
-static void MailBreachType(BreachType breachType);
+//static coolingLimitType TypesOfLimitCooling(CoolingType coolingType);
+//static void MailBreachType(BreachType breachType);
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
