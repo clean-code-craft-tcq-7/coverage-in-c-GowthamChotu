@@ -8,7 +8,7 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(inferBreach(35, 20, 30) == TOO_HIGH);
   REQUIRE(inferBreach(25, 20, 30) == NORMAL);
   
-  REQUIRE(TypesOfLimitCooling(PASSIVE_COOLING) == 0);
+  REQUIRE(TypesOfLimitCooling(PASSIVE_COOLING) == PASSIVE_COOLING);
   //REQUIRE(TypesOfLimitCooling(HI_ACTIVE_COOLING) == (coolingLimitType Limit= {0,45}));
   //REQUIRE(TypesOfLimitCooling(MED_ACTIVE_COOLING) == (coolingLimitType Limit= {0,40}));
   
