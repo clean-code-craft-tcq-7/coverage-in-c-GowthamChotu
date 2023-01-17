@@ -13,8 +13,8 @@ TEST_CASE("infers the breach according to limits") {
   //REQUIRE(TypesOfLimitCooling(MED_ACTIVE_COOLING) == (coolingLimitType Limit= {0,40}));
   
   REQUIRE(classifyTemperatureBreach(PASSIVE_COOLING, 12) == 0);
-  REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 35) == 1);
-  REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, 25) == 2);
+  REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 35) == 0);
+  REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, 25) == 0);
   
   //REQUIRE(checkAndAlert(TO_CONTROLLER, {PASSIVE_COOLING, "Hello"}, 12));
   //REQUIRE(checkAndAlert(TO_EMAIL , {PASSIVE_COOLING, "Hello"}, 12));
