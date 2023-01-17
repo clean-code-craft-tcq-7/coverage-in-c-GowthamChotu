@@ -16,6 +16,6 @@ TEST_CASE("infers the breach according to limits") {
   REQUIRE(classifyTemperatureBreach(HI_ACTIVE_COOLING, 35) == 0);
   REQUIRE(classifyTemperatureBreach(MED_ACTIVE_COOLING, 25) == 0);
   
-  REQUIRE(checkAndAlert(TO_CONTROLLER, {PASSIVE_COOLING, "Hello"}, 12) == TO_CONTROLLER);
-  REQUIRE(checkAndAlert(TO_EMAIL , {PASSIVE_COOLING, "Hello"}, 12) == TO_EMAIL);
+  REQUIRE(checkAndAlert(TO_CONTROLLER, {PASSIVE_COOLING, "Hello"}, 12) == 0);
+  REQUIRE(checkAndAlert(TO_EMAIL , {PASSIVE_COOLING, "Hello"}, 12) == 0);
 }
