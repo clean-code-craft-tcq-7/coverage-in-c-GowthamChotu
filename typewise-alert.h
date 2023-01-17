@@ -40,3 +40,6 @@ void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
+
+static coolingLimitType TypesOfLimitCooling(CoolingType coolingType);
+static void MailBreachType(BreachType breachType);
