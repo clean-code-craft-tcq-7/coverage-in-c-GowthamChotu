@@ -1,6 +1,9 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 
+//static coolingLimitType TypesOfLimitCooling(CoolingType coolingType);
+//static void MailBreachType(BreachType breachType);
+
 BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   if(value < lowerLimit) {
     return TOO_LOW;
@@ -11,35 +14,37 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
   return NORMAL;
 }
 
-BreachType classifyTemperatureBreach(
-    CoolingType coolingType, double temperatureInC) {
+static coolingLimitType TypesOfLimitCooling(CoolingType coolingType)
+{
+  coolingLimitType coolingLimitTypeReturn;
+  CoolingType CoolingType_en;
+  coolingLimitTypeReturn.lowerLimit = 0;
+  coolingLimitTypeReturn.upperLimit = 0;
+  
+  (coolingType == PASSIVE_COOLING) ? coolingLimitTypeReturn.upperLimit = 35 : ((coolingType == HI_ACTIVE_COOLING) ? coolingLimitTypeReturn.upperLimit = 45 : coolingLimitTypeReturn.upperLimit = 40);
+  
+  return coolingLimitTypeReturn;
+}
+
+BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC) 
+{
   int lowerLimit = 0;
   int upperLimit = 0;
-  switch(coolingType) {
-    case PASSIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 35;
-      break;
-    case HI_ACTIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 45;
-      break;
-    case MED_ACTIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 40;
-      break;
-  }
+  coolingLimitType coolingTypeReturnValue;
+  
+  coolingTypeReturnValue = TypesOfLimitCooling(coolingType);
+  lowerLimit = coolingTypeReturnValue.lowerLimit ;
+  upperLimit = coolingTypeReturnValue.upperLimit ;
+  
   return inferBreach(temperatureInC, lowerLimit, upperLimit);
 }
 
-void checkAndAlert(
-    AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC) {
+void checkAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+{
+  BreachType breachType = classifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
 
-  BreachType breachType = classifyTemperatureBreach(
-    batteryChar.coolingType, temperatureInC
-  );
-
-  switch(alertTarget) {
+  switch(alertTarget)
+  {
     case TO_CONTROLLER:
       sendToController(breachType);
       break;
@@ -54,18 +59,25 @@ void sendToController(BreachType breachType) {
   printf("%x : %x\n", header, breachType);
 }
 
+static void MailBreachType(BreachType breachType)
+{
+  //BreachType BreachType_enum;
+  
+  if (breachType == TOO_LOW)
+  {
+      printf("The temperature is low\n");
+  }
+  else if (breachType == TOO_HIGH)
+  {
+      printf("The temperature is High\n");
+  }
+  else
+  {
+  }
+}
+
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  switch(breachType) {
-    case TOO_LOW:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too low\n");
-      break;
-    case TOO_HIGH:
-      printf("To: %s\n", recepient);
-      printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      break;
-  }
+  printf("To: %s\n", recepient);
+  MailBreachType(breachType);
 }
